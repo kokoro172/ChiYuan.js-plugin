@@ -14,9 +14,9 @@ import {Group, segment, Message} from "oicq";
  * 使用的是cron表达式，每周六的9点和19点提醒
  * 可以百度搜索转换器
  */
-//const alertTime = "0 0 9,19 ? ? 7 ";
+const alertTime = "0 0 9,19 ? ? 7";
 
-const alertTime = "0 0/2 * * * ?"; //测试时间，每2分钟执行
+//const alertTime = "0 0/2 * * * ?"; //测试时间，每2分钟执行
 
 /**
  * 开启定时推送的群号：
@@ -24,8 +24,9 @@ const alertTime = "0 0/2 * * * ?"; //测试时间，每2分钟执行
  * groupList = ["114514"];
  * 两个群号：
  * groupList = ["114514","1919810"];
+ * 不加双引号只能填入一个群，否则不会执行任务
  */
-const groupList = [767368570];
+const groupList = [];
 
 weeklyRemindMeeting();    //开启定时提醒任务，注释掉可以关闭
 
@@ -44,8 +45,8 @@ export class duckImg extends plugin {
             priority: 1000,
             rule: [
                 {
-                    /** 命令正则匹配 */
-                    reg: "^#?今晚8点开会$",
+                    /** 命令匹配 */
+                    reg: "今晚8点开会",
                     /** 执行方法 */
                     fnc: "remindMeeting"
                 }
